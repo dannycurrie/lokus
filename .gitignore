@@ -1,0 +1,6 @@
+config.js
+yarn-debug.log*
+yarn-error.log*
+
+#audio files
+/audio/audio-files/*
