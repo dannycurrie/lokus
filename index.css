@@ -6,6 +6,18 @@ html,
 body {
   margin: 0 auto;
   height: 100%;
+  background-color: #1d212b;
+}
+
+#app {
+  opacity: 0.5;
+  width: 200vw;
+  height: 200vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(270deg, #0f2027, #203a43, #2c5364);
+  animation: animateGlow 6s ease infinite;
 }
 
 body {
@@ -17,15 +29,18 @@ body {
   background-color: #1d212b;
 }
 
-div {
-  position: relative;
-  width: 30vw;
-  height: 30vw;
-  line-height: 30vw;
+div.point {
+  position: absolute;
+  width: 100px;
+  height: 100px;
   text-align: center;
   color: #252b37;
   background-color: #151823;
   animation: textColor 10s ease infinite;
+  background: linear-gradient(270deg, #0f2027, #203a43, #2c5364);
+  letter-spacing: 0.4rem;
+  border-radius: 50%;
+  font-size: small;
 }
 div:after {
   position: absolute;
@@ -67,8 +82,4 @@ div:after {
   100% {
     color: #7e0fff;
   }
-}
-
-.point {
-  letter-spacing: 1rem;
 }
