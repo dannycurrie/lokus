@@ -1,7 +1,14 @@
 import audioService from './audio/audio-service.js';
 
-const sounds = audioService();
+const {
+  fromEvent,
+  operators: { map },
+} = rxjs;
 
-const play = (sound) => sound.audio.play();
+const source = fromEvent(document, 'mousemove');
+const example = source.pipe(
+  map((event) => `pos ${event.clientX} ${event.clientY}`)
+);
+example.subscribe((val) => console.log(val));
 
-sounds.forEach(play);
+audioService().forEach((s) => s.audio.play());
