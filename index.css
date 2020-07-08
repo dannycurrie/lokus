@@ -7,6 +7,7 @@ body {
   margin: 0 auto;
   height: 100%;
   background-color: #1d212b;
+  overflow: hidden;
 }
 
 #app {
@@ -17,7 +18,10 @@ body {
   justify-content: center;
   align-items: center;
   background: linear-gradient(270deg, #0f2027, #203a43, #2c5364);
-  animation: animateGlow 6s ease infinite;
+  animation: animateGlow 20s ease infinite;
+  mix-blend-mode: color-dodge;
+  position: relative;
+  left: -200px;
 }
 
 body {
@@ -31,16 +35,15 @@ body {
 
 div.point {
   position: absolute;
-  width: 100px;
-  height: 100px;
-  text-align: center;
-  color: #252b37;
+  width: 10px;
+  height: 10px;
   background-color: #151823;
-  animation: textColor 10s ease infinite;
-  background: linear-gradient(270deg, #0f2027, #203a43, #2c5364);
+  background: linear-gradient(270deg, #0fffc1, #0f2027, #7e0fff);
   letter-spacing: 0.4rem;
   border-radius: 50%;
   font-size: small;
+  animation: grow 12s ease infinite;
+  filter: blur(12px);
 }
 div:after {
   position: absolute;
@@ -59,7 +62,7 @@ div:after {
   filter: blur(5vw);
   background: linear-gradient(270deg, #0fffc1, #7e0fff);
   background-size: 200% 200%;
-  animation: animateGlow 10s ease infinite;
+  animation: animateGlow 30s ease infinite;
 }
 @keyframes animateGlow {
   0% {
@@ -82,4 +85,30 @@ div:after {
   100% {
     color: #7e0fff;
   }
+}
+
+@keyframes grow {
+  0% {
+    height: 10px;
+    width: 10px;
+  }
+  50% {
+    height: 13px;
+    width: 13px;
+  }
+  100% {
+    height: 10px;
+    width: 10px;
+  }
+}
+
+canvas{
+  position: absolute;
+  top: 0;
+  right: 0;
+  -webkit-filter: blur(15px);
+  filter: url('#blur'); /*Firefox Support for Blur*/
+  filter: blur(15px);
+  opacity: 0.2;
+  /* z-index:  -2; */
 }
