@@ -1,17 +1,5 @@
-const fillColour = '#0fffc1';
-
-export default (canvas) => {
-  const ctx = canvas.getContext('2d');
-  let w = window.innerWidth,
-    h = window.outerHeight * 2;
-  canvas.width = w;
-  canvas.height = h;
-  console.log('h: ', h);
-  console.log('w: ', w);
-
-  ctx.globalAlpha = 0.2;
-
-  const bg_particle_no = 170;
+export default (ctx, w, h, fillColour) => {
+  const bg_particle_no = 100;
 
   const particles = [];
 

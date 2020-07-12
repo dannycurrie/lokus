@@ -1,45 +1,23 @@
 import audioService from './audio/audio-service.js';
 import { getDistance, normalise } from './utils.js';
-import glitch from './glitch.js';
-import particles from './particles.js';
+import visuals from './visuals/index.js';
 
-// visuals
-const canvas = document.getElementsByTagName('canvas')[0];
-const ctx = canvas.getContext('2d');
-
-window.requestAnimFrame = (function () {
-  return (
-    window.requestAnimationFrame ||
-    window.webkitRequestAnimationFrame ||
-    window.mozRequestAnimationFrame ||
-    window.oRequestAnimationFrame ||
-    window.msRequestAnimationFrame ||
-    function (callback) {
-      window.setTimeout(callback, 1000 / 60);
-    }
-  );
-})();
-
-const drawParticles = particles(canvas, ctx);
-
-function animloop() {
-  drawParticles();
-  glitch(canvas, ctx);
-  requestAnimFrame(animloop);
-}
-animloop();
+visuals();
 
 // sounds
 const {
   fromEvent,
-  operators: { map },
+  operators: { map, debounceTime },
 } = rxjs;
+
+const w = window.innerWidth;
+const h = window.innerHeight;
 
 const buildPoint = (sound, key) => ({
   id: key,
   sound,
-  x: Math.random() * 1000,
-  y: Math.random() * 1000,
+  x: Math.random() * w,
+  y: Math.random() * h,
 });
 
 // add points to page
@@ -58,6 +36,7 @@ const addPoints = (points) => {
   const source = fromEvent(document, 'mousemove');
 
   const example = source.pipe(
+    debounceTime(10),
     map(({ clientX, clientY }) => [clientX, clientY])
   );
 
@@ -78,9 +57,10 @@ const addPoints = (points) => {
 
 // get audio and build points
 audioService().then((res) => {
-  const soundPoints = res.map((s) => {
-    s.audio.play();
-    return buildPoint(s.audio, s.key);
-  });
-  addPoints(soundPoints);
+  addPoints(
+    res.map((s) => {
+      s.audio.play();
+      return buildPoint(s.audio, s.key);
+    })
+  );
 });
