@@ -23,13 +23,15 @@ const buildPoint = (sound, key) => ({
 // add points to page
 const addPoints = (points) => {
   const app = document.querySelector('#app');
-  points.forEach(({ x, y, id }) => {
+  points.forEach(({ x, y, id, sound }) => {
     const point = document.createElement('div');
     point.id = id;
     point.className = 'point';
     point.style.left = x;
     point.style.top = y;
     app.appendChild(point);
+    // set sound pan according to x value on screen
+    sound.stereo = normalise(x, w, 0);
   });
 
   // listen for mouse events
@@ -57,6 +59,10 @@ const addPoints = (points) => {
 
 // get audio and build points
 audioService().then((res) => {
+  // remove loader once sounds loaded
+  document.querySelector('#loader').setAttribute('hidden', true);
+  document.querySelector('#loader-bg').setAttribute('hidden', true);
+
   addPoints(
     res.map((s) => {
       s.audio.play();
