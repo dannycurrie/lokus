@@ -1,5 +1,5 @@
 const soundsPath = '../audio/audio-files/';
-const soundFormat = 'wav';
+const soundFormat = 'mp3';
 
 export const sounds = {
   piano_new: 'piano_new',
