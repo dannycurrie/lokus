@@ -3,7 +3,7 @@ const soundFormat = 'mp3';
 
 export const sounds = {
   piano_new: 'piano_new',
-  LR_Pianos_new: 'LR_Pianos_new',
+  LR_pianos_new: 'LR_pianos_new',
   arp_new: 'arp_new',
   synth_new: 'synth_new',
   synth2_new: 'synth2_new',
