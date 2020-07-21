@@ -202,3 +202,95 @@ canvas {
   letter-spacing: 0.3rem;
   text-decoration: none;
 }
+
+/* play button */
+.play-container {
+  text-align: center;
+  z-index: 99999;
+  position: absolute;
+  filter: blur(2px);
+}
+
+.circle {
+  stroke: #0fffc1;
+  stroke-dasharray: 650;
+  stroke-dashoffset: 650;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  opacity: 0.3;
+}
+
+.play-btn {
+  display: inline-block;
+  transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+}
+
+.play-btn .triangle {
+  -webkit-transition: all 0.7s ease-in-out;
+  transition: all 0.7s ease-in-out;
+  stroke-dasharray: 240;
+  stroke-dashoffset: 480;
+  stroke: #2c5364;
+  transform: translateY(0);
+}
+.play-btn:hover .triangle {
+  stroke-dashoffset: 0;
+  opacity: 0.6;
+  stroke: #0fffc1;
+  animation: nudge 0.7s ease-in-out;
+}
+@keyframes nudge {
+  0% {
+    transform: translateX(0);
+  }
+  30% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  70% {
+    transform: translateX(-2px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.play-btn:hover .circle {
+  stroke-dashoffset: 0;
+  opacity: 0.5;
+}
+
+.close {
+  cursor: inherit;
+}
+
+.close .triangle {
+  stroke-dashoffset: 0;
+  opacity: 0;
+  stroke: #2c5364;
+  animation: nudge 0.7s ease-in-out;
+  -webkit-transition: all 0.7s ease-in-out;
+  transition: all 0.7s ease-in-out;
+}
+
+.prompt {
+  position: absolute;
+  font-weight: lighter;
+  letter-spacing: 2;
+  opacity: 0;
+}
+
+.hide {
+  opacity: 0;
+  -webkit-transition: all 0.7s ease-in-out;
+  transition: all 0.7s ease-in-out;
+  cursor: none;
+}
+
+.show {
+  opacity: 0.7;
+  -webkit-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+}

@@ -6,6 +6,6 @@
   "scripts": {
     "start": "open -a 'Google Chrome' http://localhost:3000/index.html & node main.js",
     "build": "./build.sh",
-    "deploy": "aws s3 sync build/ s3://lokus"
+    "deploy": "aws s3 sync build/ s3://lokus.dev"
   }
 }
